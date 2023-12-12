@@ -42,3 +42,36 @@ git log	View changes
 git log --summary	View changes (detailed)
 git log --oneline	View changes (briefly)
 git diff [source branch] [target branch]	Preview changes before merging
+
+To squash commits in Git, you can use the interactive rebase feature, which allows you to combine multiple commits into a single commit. Here's a step-by-step guide:
+
+Start Interactive Rebase:
+
+Open your terminal or command prompt.
+Use the following command to start an interactive rebase for the last 'N' commits, where 'N' is the number of commits you want to squash:
+bash
+Copy code
+git rebase -i HEAD~N
+Replace 'N' with the number of commits you want to squash. For example, to squash the last 3 commits, use git rebase -i HEAD~3.
+
+Edit the Commit List:
+
+After executing the command, a text editor will open, displaying a list of commits and their respective hash IDs.
+Each commit line starts with the word "pick" (except for the first one).
+Squash Commits:
+
+To squash commits, change the word "pick" to "squash" (or simply "s") for the commits you want to squash into the previous commit.
+Leave the word "pick" for the commit you want to retain as the combined commit message.
+Save and close the text editor.
+Modify Combined Commit Message (if prompted):
+
+After saving and closing the editor, another editor will open (if you squashed multiple commits), allowing you to modify the commit message for the combined commit.
+Save and close the editor again.
+Finish Rebase:
+
+Git will finalize the rebase, combining the selected commits into one.
+If you've modified the commit message, the rebase will complete, and the combined commit will reflect the updated message.
+Push the Changes (if necessary):
+
+If the commits were already pushed to a remote repository, you might need to force-push (git push --force) the changes. Be cautious when force-pushing, as it rewrites history.
+Remember, rewriting history can impact collaborators if the changes are already pushed to a shared repository. It's recommended to communicate changes and coordinate with team members when modifying shared branches.
